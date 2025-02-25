@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use Illuminate\Http\Request;
+
+class AdminController extends Controller
+{
+    
+    public function index()
+    {
+        return Admin::all();
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nome' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'escola_id' => 'required'
+        ]);
+
+        $admin = Admin::create([
+            'nome' => $request->nome,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'escola_id' => $request->escola_id
+        ]);
+
+        return response()->json($admin, 201);
+    }
+
+    public function show($id)
+    {
+        $admin = Admin::findOrFail($id);
+
+        return $admin;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $admin = Admin::findOrFail($id);
+
+        $admin->update($request->all());
+        return $admin;
+    }
+
+    public function destroy($id)
+    {
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+
+        return response()->json(['message' => 'Admin deletado com sucesso']);
+    }
+}

@@ -16,6 +16,10 @@ class Admin extends Model
         'escola_id'
     ];
 
+    protected $hidding = [
+        'password'
+    ];
+
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id');
