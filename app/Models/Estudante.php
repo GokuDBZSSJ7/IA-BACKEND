@@ -19,6 +19,8 @@ class Estudante extends Model
         'distancia'
     ];
 
+    protected $with = ['curso', 'bimestre', 'escola'];
+
     public function curso()
     {
         return $this->belongsTo(Curso::class, 'curso_id');
