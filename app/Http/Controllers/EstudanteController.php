@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dado;
 use App\Models\Estudante;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,13 @@ class EstudanteController extends Controller
         ]);
 
         $estudante = Estudante::create($request->all());
+
+        Dado::create([
+            'estudante_id' => $estudante->id,
+            'renda_familiar' => $estudante->renda_familiar,
+            'bolsa' => $estudante->bolsa,
+            'distancia' => $estudante->distancia
+        ]);
 
         return response()->json($estudante);
     }

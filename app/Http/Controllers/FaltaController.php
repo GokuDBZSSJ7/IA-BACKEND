@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dado;
 use App\Models\Falta;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,15 @@ class FaltaController extends Controller
         ]);
 
         $falta = Falta::create($request->all());
+
+        $faltas = Falta::where('estudante_id', $request->estudante_id)->get();
+        $total = $faltas->count();
+
+        $dado = Dado::where('estudante_id', $falta->estudante_id)->first();
+        $dado->update([
+            'faltas' => $total,
+            'faltas_consecutivas' => $falta->faltas_consecutivas
+        ]);
 
         return response()->json($falta, 201);
     }

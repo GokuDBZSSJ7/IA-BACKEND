@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dado;
 use App\Models\Nota;
 use Illuminate\Http\Request;
 
 class NotaController extends Controller
 {
+
 
     public function index()
     {
@@ -24,6 +26,11 @@ class NotaController extends Controller
         ]);
 
         $nota = Nota::create($request->all());
+
+        $dado = Dado::where('estudante_id', $nota->estudante_id)->first();
+        $dado->update([
+            'nota_media' => $nota->nota
+        ]);
 
         return response()->json($nota, 201);
     }
