@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BimestreController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EscolaController;
@@ -23,3 +24,5 @@ Route::apiResource('estudantes', EstudanteController::class);
 Route::apiResource('faltas', FaltaController::class);
 
 Route::apiResource('notas', NotaController::class);
+
+Route::post('login', [LoginController::class, 'login']);
