@@ -20,7 +20,9 @@ return new class extends Migration
             $table->decimal('renda_familiar', 10, 2)->nullable();
             $table->boolean('bolsa')->nullable();
             $table->decimal('distancia', 6, 2)->nullable();
-            $table->boolean('desistente')->default(false);
+            $table->boolean('intervencao')->default(false);
+            $table->string('resultado_intervencao')->nullable();
+            $table->string('precisao_ia')->nullable();
             $table->timestamps();
         });
     }

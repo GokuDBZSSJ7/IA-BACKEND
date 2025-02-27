@@ -24,5 +24,10 @@ class Curso extends Model
     {
         return $this->belongsTo(Escola::class, 'escola_id');
     }
+
+    public function turmas()
+    {
+        return $this->hasMany(Turma::class);
+    }
 }
 

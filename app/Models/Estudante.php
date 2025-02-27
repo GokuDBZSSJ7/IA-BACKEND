@@ -14,12 +14,13 @@ class Estudante extends Model
         'curso_id',
         'bimestre_id',
         'escola_id',
+        'turma_id',
         'renda_familiar',
         'bolsa',
         'distancia'
     ];
 
-    protected $with = ['curso', 'bimestre', 'escola'];
+    protected $with = ['turma', 'bimestre', 'escola'];
 
     public function curso()
     {
@@ -34,5 +35,10 @@ class Estudante extends Model
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id');
+    }
+
+    public function turma()
+    {
+        return $this->belongsTo(Turma::class, 'turma_id');
     }
 }

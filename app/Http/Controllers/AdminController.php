@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Curso;
+use App\Models\Turma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    
+
     public function index()
     {
         return Admin::all();
@@ -54,5 +57,14 @@ class AdminController extends Controller
         $admin->delete();
 
         return response()->json(['message' => 'Admin deletado com sucesso']);
+    }
+
+    public function getTurmasByAdminId($admin_id)
+    {
+        $cursoIds = Curso::where('admin_id', $admin_id)->pluck('id'); // Pega os IDs dos cursos do admin
+
+        $turmas = Turma::whereIn('curso_id', $cursoIds)->get(); // Busca as turmas desses cursos
+
+        return response()->json($turmas);
     }
 }

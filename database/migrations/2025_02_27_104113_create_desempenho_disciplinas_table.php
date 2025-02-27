@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estudantes', function (Blueprint $table) {
+        Schema::create('desempenho_disciplinas', function (Blueprint $table) {
             $table->id();
-            $table->string("nome");
-            $table->foreignId("curso_id")->constrained("cursos")->onDelete("cascade");
+            $table->foreignId("estudante_id")->constrained("estudantes")->onDelete("cascade");
+            $table->foreignId("disciplina_id")->constrained("disciplinas")->onDelete("cascade");
             $table->foreignId("bimestre_id")->constrained("bimestres")->onDelete("cascade");
-            $table->foreignId("escola_id")->constrained("escolas")->onDelete("cascade");
             $table->foreignId("turma_id")->constrained("turmas")->onDelete("cascade");
-            $table->decimal("renda_familiar", 10, 2)->nullable();
-            $table->boolean("bolsa")->nullable();
-            $table->decimal("distancia", 8, 2)->nullable();
+            $table->decimal("nota", 4, 2)->nullable();
+            $table->decimal("frequencia", 5, 2);
+            $table->integer("faltas")->default(0);
+            $table->integer("faltas_consecutivas")->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estudantes');
+        Schema::dropIfExists('desempenho_disciplinas');
     }
 };

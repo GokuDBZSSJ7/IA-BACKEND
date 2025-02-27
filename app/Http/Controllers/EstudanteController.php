@@ -22,6 +22,7 @@ class EstudanteController extends Controller
             'curso_id' => 'required',
             'bimestre_id' => 'required',
             'escola_id' => 'required',
+            'turma_id' => 'required',
             'renda_familiar' => 'nullable',
             'bolsa' => 'nullable',
             'distancia' => 'nullable'

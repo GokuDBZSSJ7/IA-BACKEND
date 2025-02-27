@@ -16,7 +16,9 @@ class Dado extends Model
         'nota_media',
         'renda_familiar',
         'bolsa',
-        'distancia'
+        'intervencao',
+        'resultado_intervencao',
+        'precisao_ia'
     ];
 
     public function estudante()

@@ -21,8 +21,23 @@ class Admin extends Model
         'password'
     ];
 
+    protected $with = [
+        'escola',
+        'cursos'
+    ];
+
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id');
+    }
+
+    public function cursos()
+    {
+        return $this->hasMany(Curso::class, 'admin_id');
+    }
+
+    public function turmas()
+    {
+        return $this->hasManyThrough(Turma::class, Curso::class, 'admin_id', 'curso_id', 'id', 'id');
     }
 }
