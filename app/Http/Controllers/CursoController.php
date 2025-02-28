@@ -49,4 +49,10 @@ class CursoController extends Controller
 
         return response()->json(['message' => 'Curso deletado com sucesso!']);
     }
+
+    public function getCursoByAdminId($id)
+    {
+        $curso = Curso::where('admin_id', $id)->get();
+        return $curso;
+    }
 }

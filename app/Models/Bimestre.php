@@ -17,6 +17,10 @@ class Bimestre extends Model
         'curso_id'
     ];
 
+    protected $with = [
+        'curso'
+    ];
+
     public function curso()
     {
         return $this->belongsTo(Curso::class, 'curso_id');

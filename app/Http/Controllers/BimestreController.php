@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bimestre;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class BimestreController extends Controller
@@ -51,5 +52,13 @@ class BimestreController extends Controller
         $bimestre->delete();
 
         return response()->json(['message' => 'Bimestre deletado com sucesso!']);
+    }
+
+    public function getBimestresByAdminId($admin_id)
+    {
+        $cursoIds = Curso::where('admin_id', $admin_id)->pluck('id');
+
+        $bimestres = Bimestre::whereIn('curso_id', $cursoIds)->get(); 
+        return response()->json($bimestres);
     }
 }

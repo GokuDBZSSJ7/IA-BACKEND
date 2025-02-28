@@ -20,8 +20,10 @@ Route::apiResource('admins', AdminController::class);
 Route::get('getTurmasDoAdmin/{id}', [AdminController::class, 'getTurmasByAdminId']);
 
 Route::apiResource('cursos', CursoController::class);
+Route::get('getCursoAdmin/{id}', [CursoController::class, 'getCursoByAdminId']);
 
 Route::apiResource('bimestres', BimestreController::class);
+Route::get('getBimestresByAdminId/{id}', [BimestreController::class, 'getBimestresByAdminId']);
 
 Route::apiResource('estudantes', EstudanteController::class);
 

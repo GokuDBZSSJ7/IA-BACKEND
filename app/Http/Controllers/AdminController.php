@@ -61,7 +61,7 @@ class AdminController extends Controller
 
     public function getTurmasByAdminId($admin_id)
     {
-        $cursoIds = Curso::where('admin_id', $admin_id)->pluck('id'); // Pega os IDs dos cursos do admin
+        $cursoIds = Curso::where('admin_id', $admin_id)->pluck('id');
 
         $turmas = Turma::whereIn('curso_id', $cursoIds)->get(); // Busca as turmas desses cursos
 
