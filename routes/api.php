@@ -31,6 +31,7 @@ Route::apiResource('turmas', TurmaController::class);
 Route::get('getTurmaByCursoId/{id}', [TurmaController::class, 'getTurmaByCursoId']);
 
 Route::apiResource('disciplinas', DisciplinaController::class);
+Route::get('getDisciplinasByAdminId/{id}', [AdminController::class, 'getDisciplinasByAdminId']);
 
 Route::apiResource('desempenhos', DesempenhoDisciplinaController::class);
 

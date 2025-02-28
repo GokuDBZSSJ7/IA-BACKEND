@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Curso;
+use App\Models\Disciplina;
 use App\Models\Turma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,5 +67,16 @@ class AdminController extends Controller
         $turmas = Turma::whereIn('curso_id', $cursoIds)->get(); // Busca as turmas desses cursos
 
         return response()->json($turmas);
+    }
+
+    public function getDisciplinasByAdminId($admin_id)
+    {
+        $cursoIds = Curso::where('admin_id', $admin_id)->pluck('id');
+
+        $turmas = Turma::whereIn('curso_id', $cursoIds)->pluck('id');
+
+        $disciplinas = Disciplina::whereIn('turma_id', $turmas)->get();
+
+        return response()->json($disciplinas);
     }
 }

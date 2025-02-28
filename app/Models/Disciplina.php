@@ -16,6 +16,10 @@ class Disciplina extends Model
         'turma_id',
     ];
 
+    protected $with = [
+        'turma'
+    ];
+
     public function turma()
     {
         return $this->belongsTo(Turma::class, 'turma_id');
