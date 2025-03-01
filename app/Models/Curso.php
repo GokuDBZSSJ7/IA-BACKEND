@@ -15,6 +15,10 @@ class Curso extends Model
         'escola_id'
     ];
 
+    // protected $with = [
+    //     'admin'
+    // ];
+
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'admin_id');

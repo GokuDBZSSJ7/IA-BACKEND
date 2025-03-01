@@ -22,8 +22,6 @@ class EscolaController extends Controller
             'telefone' => 'required'
         ]);
 
-        // return $request;
-
         $escola = Escola::create($request->all());
 
         return response()->json($escola, 201);

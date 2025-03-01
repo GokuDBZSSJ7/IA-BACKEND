@@ -53,6 +53,7 @@ class CursoController extends Controller
     public function getCursoByAdminId($id)
     {
         $curso = Curso::where('admin_id', $id)->get();
+        $curso->load("admin");
         return $curso;
     }
 }
