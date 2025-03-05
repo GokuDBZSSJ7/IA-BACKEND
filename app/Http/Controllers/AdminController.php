@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Curso;
 use App\Models\Disciplina;
+use App\Models\Estudante;
 use App\Models\Turma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +83,12 @@ class AdminController extends Controller
 
     public function getEstudantesByAdminId($id)
     {
-        
+        $cursoIds = Curso::where('admin_id', $id)->pluck('id');
+
+        $turmas = Turma::whereIn('curso_id', $cursoIds)->pluck('id');
+
+        $estudantes = Estudante::whereIn('turma_id', $turmas)->get();
+
+        return $estudantes;
     }
 }
