@@ -1,0 +1,18 @@
+POST http://127.0.0.1:8000/api/escolas
+Content-Type: application/json
+
+{
+    "nome": "Unifunec",
+    "email": "unifunec@gmail.com",
+    "telefone": "+00 00 00000-0000"
+}
+
+POST http://127.0.0.1:8000/api/admins
+Content-Type: application/json
+
+{
+    "nome": "Codinhoto",
+    "email": "codinhoto@gmail.com",
+    "password": "12345678",
+    "escola_id": 1
+}

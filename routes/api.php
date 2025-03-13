@@ -26,7 +26,7 @@ Route::apiResource('bimestres', BimestreController::class);
 Route::get('getBimestresByAdminId/{id}', [BimestreController::class, 'getBimestresByAdminId']);
 
 Route::apiResource('estudantes', EstudanteController::class);
-Route::get('getEstudantesByAdminId/{id}', [AdminController::class, 'getEstudantesByAdminId']);
+Route::get('getEstudantesDoUsuario/{id}', [EstudanteController::class, 'getEstudantesDoUsuario']);
 
 Route::apiResource('turmas', TurmaController::class);
 Route::get('getTurmaByCursoId/{id}', [TurmaController::class, 'getTurmaByCursoId']);
