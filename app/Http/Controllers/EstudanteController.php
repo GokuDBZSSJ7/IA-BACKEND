@@ -68,4 +68,13 @@ class EstudanteController extends Controller
 
         return response()->json(['message' => 'Estudante deletado com sucesso!']);
     }
+
+    public function getEstudantesDoUsuario($id)
+    {
+        $estudantes = Estudante::whereHas('curso', function ($query) use ($id) {
+            $query->where('admin_id', $id);
+        })->get();
+
+        return response()->json($estudantes);
+    }
 }
